@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QS598XH622"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QS598XH622');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus - Department of Computer Application</title>
+    <link rel="stylesheet" href="syllabusstyle.css">
+    <link rel="shortcut icon" href="emoji.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div class="department-title" id="home-button">
+            🖥️ Department of Computer Application
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="contacts/contact.html">
+                        <img src="icons/world-wide-web (1).png" alt="Contact" class="contact-icon" id="contact-icon">
+                    </a>
+                </li>
+                <li>
+                    <div class="theme-switch" id="theme-switch"></div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+            <h2>📚 Syllabus</h2>
+            <section id="syllabus">
+            <div class="year-syllabus">
+                <div class="year">
+                    <h3>1st Year Syllabus</h3>
+                    <p>Download or view the syllabus for the first year.</p>
+                    <div class="buttons">
+                        <a class="button view"
+                            href="https://drive.google.com/file/d/1F4O08JKnAarvsQVszFpva5ifOGih4whM/view?usp=drive_link"
+                            target="_blank">📄 View</a>
+                        <a class="button download"
+                            href="https://drive.google.com/uc?export=download&id=1F4O08JKnAarvsQVszFpva5ifOGih4whM"
+                            download>⤵ Download</a>
+                    </div>
+                </div>
+                <div class="year">
+                    <h3>2nd Year Syllabus</h3>
+                    <p>Download or view the syllabus for the second year.</p>
+                    <div class="buttons">
+                        <a class="button view"
+                            href="https://drive.google.com/file/d/10wPVVxCZQzbh9gTogVi4OZkujLfomHqB/view?usp=drive_link"
+                            target="_blank">📄 View</a>
+                        <a class="button download"
+                            href="https://drive.google.com/uc?export=download&id=10wPVVxCZQzbh9gTogVi4OZkujLfomHqB"
+                            download>⤵ Download</a>
+                    </div>
+                </div>
+                <div class="year">
+                    <h3>3rd Year Syllabus</h3>
+                    <p>Download or view the syllabus for the third year.</p>
+                    <div class="buttons">
+                        <a class="button view"
+                            href="https://drive.google.com/file/d/1LNxrZ6XsRoab9q37ZE10EAF5m8MBAuSB/view?usp=drive_link"
+                            target="_blank">📄 View</a>
+                        <a class="button download"
+                            href="https://drive.google.com/uc?export=download&id=1LNxrZ6XsRoab9q37ZE10EAF5m8MBAuSB"
+                            download>⤵ Download</a>
+                    </div>
+                </div>
+            
+    </main>
+
+    <footer>
+        <a href="HOME.html"><p>&copy; 2024 Course Syllabus</p></a>
+        <p class="contact-footer"><a href="contacts/contact.html">Contact</a></p>
+        <ul class="social-media">
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.getElementById('home-button').addEventListener('click', function () {
+            if (window.location.pathname === '/HOME.html' || window.location.pathname === '/') {
+                window.location.reload(); // Reloads the page if it's already the homepage
+            } else {
+                window.location.href = 'HOME.html'; // Navigates to the homepage if not already there
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeSwitch = document.getElementById('theme-switch');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+
+            // Apply the saved theme on load
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark');
+                themeSwitch.classList.add('dark-theme');
+            }
+
+            themeSwitch.addEventListener('click', function () {
+                document.body.classList.toggle('dark');
+                themeSwitch.classList.toggle('dark-theme');
+
+                // Save the user's theme preference
+                if (document.body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,403 @@
+/* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+#home-link {
+  color: inherit; /* Inherit the color from the parent element */
+  text-decoration: none; /* Remove underline */
+}
+
+#home-link:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Theme Variables */
+body.light-theme {
+  --background-color: #ffffff; /* Light theme background color */
+  --text-color: #333333; /* Light theme text color */
+  --header-background-color: #f0f0f0; /* Light theme header background color */
+  --header-text-color: #333333; /* Light theme header text color */
+  --card-background-color: #f8f8f8; /* Light theme card background color */
+  --card-border-color: #ddd; /* Light theme card border color */
+  --button-background-color: #007bff; /* Button background color for light theme */
+  --button-text-color: #fff; /* Button text color for light theme */
+  --link-color: #0066cc; /* Light theme link color */
+  --hover-background-color: #e0e0e0; /* Light theme hover effect background */
+  --box-shadow-color: rgba(0, 0, 0, 0.1); /* Light theme shadow */
+}
+
+body.dark-theme {
+  --background-color: #000000; /* Dark theme background color */
+  --text-color: #eeeeee; /* Dark theme text color */
+  --header-background-color: #333333; /* Dark theme header background color */
+  --header-text-color: #eeeeee; /* Dark theme header text color */
+  --card-background-color: #030a16; /* Dark theme card background color */
+  --card-border-color: #333; /* Dark theme card border color */
+  --button-background-color: #007bff; /* Button background color for dark theme */
+  --button-text-color: #efecec; /* Button text color for dark theme */
+  --link-color: #66ccff; /* Dark theme link color */
+  --hover-background-color: #434242; /* Dark theme hover effect background */
+  --box-shadow-color: rgba(255, 255, 255, 0.1); /* Dark theme shadow */
+}
+
+header {
+  background-color: var(--header-background-color);
+  color: var(--header-text-color);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #424242;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+#readme {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#readme p {
+  margin: 0 0 10px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Optional: Add space between the button and the swipe container */
+}
+
+.card {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px var(--box-shadow-color);
+  width: 300px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card-header {
+  background-color: var(--card-background-color);
+  padding: 15px;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-color: #444;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+footer {
+  background-color: var(--header-background-color);
+  color: var(--header-text-color);
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid var(--header-background-color);
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ffffff, #30c5ac);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.theme-switch::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+  background-image: url('icons8-sun-64.png');
+}
+
+body.light-theme .theme-switch {
+  background: linear-gradient(135deg, #ffffff, #30c5ac);
+}
+
+body.dark-theme .theme-switch {
+  background: linear-gradient(135deg, #30c5ac, #0d0c0c);
+}
+
+body.dark-theme .theme-switch::before {
+  left: 33px;
+  background-image: url('icons8-moon-64.png');
+}
+
+/* Swipe Button Styles */
+.swipe-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  background-color: var(--hover-background-color);
+  border-radius: 25px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.swipe-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #2c042f;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding-right: 10px;
+  transition: left 0.3s ease;
+  cursor: pointer; /* Ensures it looks clickable */
+}
+
+.swipe-text {
+  position: relative;
+  font-size: 14px;
+  background: linear-gradient(90deg, #c0c0c0, #e5e5e5, #c0c0c0);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: gradient-text 3s linear infinite, glow 2s ease-in-out infinite;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.6), 0 0 20px rgba(192, 192, 192, 0.5), 0 0 30px rgba(192, 192, 192, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(192, 192, 192, 0.8), 0 0 30px rgba(192, 192, 192, 0.7), 0 0 40px rgba(192, 192, 192, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.6), 0 0 20px rgba(192, 192, 192, 0.5), 0 0 30px rgba(192, 192, 192, 0.4);
+  }
+}
+
+.swipe-button.active {
+  left: 100%;
+}
+
+.downloading-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #28a745;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 25px;
+  animation: pop 0.3s ease-in-out;
+}
+
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.contact-footer {
+  font-size: 20px; /* Increased font size */
+  color: var(--header-text-color); /* Ensure text color matches theme */
+  text-decoration: none; /* No underline */
+  cursor: pointer;
+  margin-top: 10px;
+  transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+body.dark .contact-footer {
+    color: #eee; /* Light text in dark theme */
+}
+
+footer .contact-footer {
+  color: var(--header-text-color); /* Inherits theme's header text color */
+}
+
+footer .contact-footer:hover {
+  color: var(--link-color); /* Optionally, change color on hover */
+}
+
+a {
+  text-decoration: none;
+  color: wheat
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+  margin-bottom: 20px;
+}
+
+.dropdown-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--card-border-color);
+  background-color: var(--card-background-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-select option {
+  background-color: var(--card-background-color);
+  color: var(--text-color);
+}
+
+/* No Year Selected Message */
+.no-year-message {
+  color: var(--link-color);
+  font-size: 16px;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-bottom: 20px;
+}
+
+.dropdown-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--card-border-color);
+  background-color: var(--card-background-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.no-year-message {
+  color: var(--link-color);
+  font-size: 16px;
+  text-align: center; /* Center the text */
+  margin-top: 10px;
+}
+
+/* Responsive adjustments for mobile view */
+@media (max-width: 768px) {
+  .dropdown-select {
+    max-width: 100%; /* Make dropdown take full width on smaller screens */
+    width: 90%; /* Add some margin for better spacing */
+  }
+}
+
+.formatted-text {
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  padding: 20px; /* Add some padding if needed */
+  border: 1px solid #ddd; /* Optional: Add a border for visual separation */
+  background-color: var(--card-background-color); /* Match the card background color */
+  border-radius: 6px; /* Optional: Rounded corners */
+}
+
+.contact-icon,
+.contact-open-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.contact-icon:hover,
+.contact-open-icon:hover {
+    opacity: 0.8;
+}
+
+/* Positioning of icons in header */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

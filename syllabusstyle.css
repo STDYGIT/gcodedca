@@ -1,0 +1,338 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Light theme background */
+    color: #333; /* Light theme text color */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body.dark {
+    background-color: #000; /* Black background for dark theme */
+    color: #eee; /* Light text color for dark theme */
+}
+
+/* Header Styles */
+header {
+    background-color: #f4f4f4; /* Light background for header */
+    color: #333;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body.dark header {
+    background-color: #000000; /* Darker shade for dark theme header */
+    color: #eee;
+    border-bottom: 1px solid #444; /* Darker border for header */
+}
+
+.department-title {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff; /* Light background to match body */
+    transition: background-color 0.5s ease-in-out;
+}
+
+body.dark main {
+    background-color: #000; /* Black background to match typewriter section */
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: #f9f9f9; /* Light background for sections */
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    transform: translateY(0);
+    animation: fadeInUp 0.7s ease;
+}
+
+body.dark section {
+    background-color: #222; /* Slightly lighter dark background for sections */
+    border-color: #333;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effect with Color Transition */
+section:hover {
+    background-color: #f0f0f0; /* Slightly darker on hover */
+    color: #000; /* Highlighted text on hover */
+    border-color: #ccc; /* Lighter border on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+   /* ransform: translateY(-5px); /* Slig tht lift on hover */ */
+}
+
+/* body.dark section:hover {
+    background-color: #333; /* Darker background on hover */
+    color: #00ffcc; /* Highlighted text on hover */
+    border-color: #555; /* Lighter border on hover */
+} */
+
+/* Section Heading */
+section h2 {
+    margin-top: 0;
+    color: inherit;
+    font-size: 28px; /* Larger heading */
+    font-weight: bold;
+}
+
+/* Section Paragraph */
+section p {
+    color: #666; /* Slightly lighter text color */
+    margin-bottom: 20px; /* Added space below paragraphs */
+    line-height: 1.5;
+}
+
+body.dark section p {
+    color: #ccc; /* Lighter text color in dark mode */
+}
+
+/* Year Syllabus Styles */
+.year-syllabus {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.year {
+    background-color: #ffffff; /* Light background for year syllabus boxes */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .year {
+    background-color: #333; /* Dark background for year syllabus boxes */
+    border: 1px solid #444; /* Darker border for year syllabus boxes */
+}
+
+.year h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+body.dark .year h3 {
+    color: #eee; /* Light text color for headings in dark mode */
+}
+
+/* Button Styles */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.button.view {
+    background-color: #007bff;
+}
+
+.button.view:hover {
+    background-color: #0056b3;
+}
+
+.button.download {
+    background-color: #28a745;
+}
+
+.button.download:hover {
+    background-color: #218838;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f4f4f4; /* Light background for footer */
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ddd;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body.dark footer {
+    background-color: #111; /* Darker shade for dark theme footer */
+    color: #eee;
+    border-top: 1px solid #444; /* Darker border for footer */
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+body.dark footer p{
+    color: white;
+    text-decoration: none;
+}
+body.dark footer {
+    background-color: #111; /* Darker shade for dark theme footer */
+    color: #eee;
+}
+
+body.dark .contact-footer {
+    color: #eee;
+}
+
+.social-media {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0 0;
+    margin: 0;
+}
+
+.social-media a {
+    color: #333;
+    font-size: 24px;
+    transition: color 0.3s ease-in-out;
+}
+
+body.dark .social-media a {
+    color: #eee;
+}
+
+.social-media a:hover {
+    color: #007bff; /* Highlight color on hover */
+}
+
+body.dark .social-media a:hover {
+    color: #00ffff; /* Highlight color on hover in dark mode */
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background: linear-gradient(82deg, #ffffff, #5812b2);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.theme-switch::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url('icons/icons8-moon-100\ \(1\).png');
+}
+
+.theme-switch.dark-theme {
+    background: linear-gradient(82deg,#ffffff, #42078e);
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url('icons/icons8-sun-64.png');
+}
+.contact-footer {
+    font-size: 20px; /* Increased font size */
+    color: #333; /* Dark text in light theme */
+    text-decoration: none; /* No underline */
+    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+body.dark .contact-footer {
+    color: #eee; /* Light text in dark theme */
+}
+
+.contact-footer:hover {
+    color: inherit; /* Keep the same color on hover */
+    text-decoration: none; /* No underline on hover */
+}
+
+body.dark .contact-footer:hover {
+    color: inherit; /* Keep the same color in dark theme on hover */
+}
+
+.contact-footer a {
+    color: inherit; /* Ensure link inherits color from parent */
+    text-decoration: none; /* Remove underline from links */
+}
+.contact-footer:hover a {
+    color: inherit; /* Keep same color on hover */
+}
+
+
+
+.contact-icon,
+.contact-open-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.contact-icon:hover,
+.contact-open-icon:hover {
+    opacity: 0.8;
+}
+
+/* Positioning of icons in header */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+

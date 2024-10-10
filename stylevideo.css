@@ -1,0 +1,481 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Light theme background */
+    color: #333; /* Light theme text color */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+#readme {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: #eee;
+  }
+  
+  #readme p {
+    margin: 0 0 10px;
+  }
+
+body.dark {
+    background-color: #000; /* Black background for dark theme */
+    color: #eee;
+}
+#home-link {
+    color: inherit; /* Inherit the color from the parent element */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  #home-link:hover {
+    text-decoration: underline; /* Optional: Add underline on hover */
+  }
+/* Header Styles */
+header {
+    background-color: #f4f4f4; /* Light background for header */
+    color: #333;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body.dark header {
+    background-color: #111; /* Darker shade for dark theme header */
+    color: #eee;
+}
+
+.department-title {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background: linear-gradient(82deg, #ffffff, #5812b2);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.theme-switch::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url('icons/icons8-moon-100\ \(1\).png');
+}
+
+.theme-switch.dark-theme {
+    background: linear-gradient(82deg,#ffffff, #42078e);
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url('icons/icons8-sun-64.png');
+}
+
+/* Main Content Styles */
+main {
+    flex: 1;
+    padding: 40px;
+    background-color: #ffffff; /* Light background to match body */
+    transition: background-color 0.5s ease-in-out;
+}
+
+body.dark main {
+    background-color: #000; /* Black background to match dark theme */
+}
+
+/* Video Section Styles */
+.year h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+body.dark .year h3 {
+    color: #eee;
+}
+
+.video-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.video-box {
+    background-color: #f9f9f9; /* Light background for sections */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    flex: 1;
+    min-width: 300px;
+}
+
+body.dark .video-box {
+    background-color: #111; /* Darker background for dark theme sections */
+    border-color: #333;
+}
+
+.video-box:hover {
+    background-color: #f0f0f0; /* Slightly darker on hover */
+    color: #000; /* Highlighted text on hover */
+    border-color: #ccc; /* Lighter border on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+body.dark .video-box:hover {
+    background-color: #333; /* Darker background on hover */
+    color: #00ffcc; /* Highlighted text on hover */
+    border-color: #555; /* Lighter border on hover */
+}
+
+/* Video Box Heading */
+.video-box h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.video-box p {
+    color: #666; /* Slightly lighter text color */
+    margin-bottom: 0;
+}
+
+body.dark .video-box p {
+    color: #ccc; /* Lighter text color in dark mode */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f4f4f4; /* Light background for footer */
+    color: #333;
+    text-align: center;
+    padding: 15px 0;
+    border-top: 2px solid #ddd;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+/* ... Rest of your CSS ... */
+footer p {
+    margin: 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+body.dark footer p{
+    color: white;
+    text-decoration: none;
+}
+body.dark footer {
+    background-color: #111; /* Darker shade for dark theme footer */
+    color: #eee;
+}
+/* Video Box Styles */
+.video-box {
+    background-color: #f9f9f9; /* Light background for sections */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    flex: 1;
+    min-width: 300px;
+    text-decoration: none; /* Remove underline from links */
+}
+
+body.dark .video-box {
+    background-color: #111; /* Darker background for dark theme sections */
+    border-color: #333;
+}
+
+.video-box h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: inherit;
+}
+
+.video-box p {
+    color: #666; /* Slightly lighter text color */
+    margin-bottom: 0;
+}
+
+body.dark .video-box p {
+    color: #ccc; /* Lighter text color in dark mode */
+}
+
+.video-box:hover {
+    background-color: #f0f0f0; /* Slightly darker on hover */
+    color: #000; /* Highlighted text on hover */
+    border-color: #ccc; /* Lighter border on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+body.dark .video-box:hover {
+    background-color: #333; /* Darker background on hover */
+    color: #00ffcc; /* Highlighted text on hover */
+    border-color: #555; /* Lighter border on hover */
+}
+.contact-footer {
+    font-size: 20px; /* Increased font size */
+    color: #333; /* Dark text in light theme */
+    text-decoration: none; /* No underline */
+    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+body.dark .contact-footer {
+    color: #eee; /* Light text in dark theme */
+}
+
+.contact-footer:hover {
+    color: inherit; /* Keep the same color on hover */
+    text-decoration: none; /* No underline on hover */
+}
+
+body.dark .contact-footer:hover {
+    color: inherit; /* Keep the same color in dark theme on hover */
+}
+.contact-footer a {
+    color: inherit; /* Ensure link inherits color from parent */
+    text-decoration: none; /* Remove underline from links */
+}
+.contact-footer:hover a {
+    color: inherit; /* Keep same color on hover */
+}
+
+.contact-icon,
+.contact-open-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.contact-icon:hover,
+.contact-open-icon:hover {
+    opacity: 0.8;
+}
+
+/* Positioning of icons in header */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Accordion Styles */
+.accordion {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.year-container {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #f4f4f4; /* Light background */
+    color: #333;
+    cursor: pointer;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #e2e2e2;
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.accordion-content {
+    max-height: 0; /* Initially collapsed */
+    overflow: hidden;
+    transition: max-height 0.6s ease, padding 0.6s ease; /* Smooth sliding effect */
+    padding: 0 20px;
+    background-color: #fff; /* Light background for content */
+    border-top: 1px solid #ddd;
+}
+
+.accordion-content .semester {
+    margin-bottom: 20px;
+}
+
+.accordion-content h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.video-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Dark Theme Styles */
+body.dark .accordion-header {
+    background-color: #333; /* Dark background */
+    color: #b95b5b; /* Light text */
+}
+
+body.dark .accordion-header:hover {
+    background-color: #444; /* Slightly lighter on hover */
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+body.dark .accordion-content {
+    background-color: #222; /* Dark background for content */
+    color: #ddd; /* Lighter text in dark mode */
+    border-top: 1px solid #444; /* Darker border */
+}
+
+body.dark .accordion-content h3 {
+    color: #b84f6d; /* White text for semester titles */
+}
+
+body.dark .video-box {
+    background-color: #333; /* Dark background for video boxes */
+    color: #ccc; /* Lighter text for video descriptions */
+    border: 1px solid #444; /* Darker border */
+}
+
+body.dark .video-box:hover {
+    background-color: #444; /* Slightly lighter on hover */
+    color: #fff; /* Brighter text on hover for better readability */
+}
+
+body.dark .video-box h3 {
+    color: #fff; /* White text for video titles */
+}
+
+body.dark .video-box p {
+    color: #bbb; /* Slightly lighter text for video descriptions */
+}
+
+@media (min-width: 768px) {
+    .video-row {
+        flex-direction: row;
+    }
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px;
+}
+
+.dropdown-select {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid var(--card-border-color);
+    background-color: var(--card-background-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    appearance: none; /* Customize the dropdown arrow */
+    background: var(--dropdown-background); /* Add a gradient background */
+    background-size: cover;
+    box-shadow: none; /* Remove box shadow */
+    outline: none; /* Remove default outline */
+}
+
+.dropdown-select::-ms-expand { /* For IE and Edge */
+    display: none;
+}
+
+.dropdown-select:hover {
+    border-color: #000; /* Darken border color on hover */
+}
+
+/* Customize the dropdown arrow (using pseudo-elements) */
+.dropdown-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%) rotate(90deg);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--text-color);
+    pointer-events: none;
+}
+
+/* Add a hover effect to the dropdown */
+.dropdown-select:hover::after {
+    border-top-color: #000; /* Change arrow color on hover */
+}
+
+/* Style the dropdown options */
+.dropdown-select option {
+    background-color: var(--card-background-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+}
+
+.dropdown-select option:hover {
+    background-color: #eee; /* Lighten the background on hover */
+}
+
+/* ... Rest of your CSS ... */
+
+/* Apply a light outline for the dark theme */
+body.dark .dropdown-select {
+    border: 5px solid white; /* White outline for dark theme */
+}
+
+/* Apply a dark outline for the light theme */
+body:not(.dark) .dropdown-select {
+    border: 5px solid black; /* Dark outline for light theme */
+}
+
