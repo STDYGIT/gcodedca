@@ -1,1 +1,1 @@
-Sitemap: https://dcastdy.netlify.app/sitemap.xml
+Sitemap: https://gcodedca.netlify.app/sitemap.xml
