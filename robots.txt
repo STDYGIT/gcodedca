@@ -1,1 +1,1 @@
-Sitemap: https://stdygit.github.io/gcodedca/index.html/sitemap.xml
+Sitemap: https://stdygit.github.io/gcodedca/sitemap.xml
