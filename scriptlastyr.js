@@ -99,5 +99,25 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('mouseup', handleEnd);
         button.addEventListener('mouseleave', handleEnd);
     });
+// downaload button 
+    document.querySelectorAll('.label').forEach(function (label) {
+        label.querySelector('.input').addEventListener('change', function (e) {
+            if (this.checked) {
+                // Trigger download after animation delay (match with the animation timing)
+                setTimeout(function () {
+                    const downloadUrl = label.getAttribute('data-url');
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.download = downloadUrl.split('/').pop(); // Set the download attribute
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link); // Remove the link after download
+                }, 290); // Match this delay with the end of your animation (3.5 seconds)
+                setTimeout(function() {
+                    window.location.reload();
+                }, 5200);
+            }
+        });
+    });
    
 });
