@@ -375,7 +375,7 @@ body.dark .info-bulletin {
 
 .ticker {
     display: flex;
-    align-items: center;
+    align-items: right;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -383,9 +383,9 @@ body.dark .info-bulletin {
 .ticker p {
     display: inline-block;
     font-size: 18px;
-    animation: ticker 15s linear infinite; /* Time for scrolling across the screen */
-    padding-left: 45%; /* Remove padding to reduce gap */
-    margin-right: 30%; /* Add margin to make the scrolling continuous */
+    animation: ticker 10s linear infinite; /* Time for scrolling across the screen */
+    padding-left: 120%; /* Remove padding to reduce gap */
+    margin-right: 100%; /* Add margin to make the scrolling continuous */
 }
 
 .ticker a {
@@ -461,6 +461,3 @@ nav ul {
     }
 
 } 
-.ticker{
-    text-decoration: none;
-}
