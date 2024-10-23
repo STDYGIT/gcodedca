@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Scholarship Information</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     :root {
@@ -13,314 +13,151 @@
       --border: 3;
       --backup-border: var(--backdrop);
       --size: 200;
-    }
-
-    article:first-of-type {
-      --base: 80;
-      --spread: 500;
-      --outer: 1;
-    }
-
-    article:last-of-type {
-      --outer: 1;
-      --base: 220;
-      --spread: 200;
-    }
-
-    *,
-    *:after,
-    *:before {
-      box-sizing: border-box;
+      --primary-color: #0f3340;
+      --secondary-color: #ffffff;
     }
 
     body {
       display: grid;
       place-items: center;
       min-height: 100vh;
-      background: #0f33404c;
+      background: var(--primary-color);
       font-family: "Open Sans", sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
 
     .wrapper {
       position: relative;
     }
 
     article {
-      aspect-ratio: 3/4;
       border-radius: calc(var(--radius) * 1px);
-      width: 600px;
-      position: relative;
-      grid-template-rows: 1fr auto;
-      box-shadow: 0 1rem 2rem -1rem black;
+      width: 90%;
+      max-width: 600px;
       padding: 1rem;
+      box-shadow: 0 1rem 2rem -1rem black;
       display: grid;
       gap: 1rem;
-      backdrop-filter: blur(calc(var(--cardblur, 5) * 1px));
-      height: 700px;
+      background: #ffffff;
+      color: #000;
     }
 
+    .inside-content h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
 
     main {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
       width: 100%;
-      max-width: calc(100vw - 2rem);
-      position: relative;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
     }
-
-    /* Glow specific styles */
-    [data-glow] {
-      --border-size: calc(var(--border, 2) * 1px);
-      --spotlight-size: calc(var(--size, 150) * 1px);
-      --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
-      background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-          hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)),
-          transparent);
-      background-color: var(--backdrop, transparent);
-      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
-      background-position: 50% 50%;
-      background-attachment: fixed;
-      border: var(--border-size) solid var(--backup-border);
-      position: relative;
-      touch-action: none;
-    }
-
-    [data-glow]::before,
-    [data-glow]::after {
-      pointer-events: none;
-      content: "";
-      position: absolute;
-      inset: calc(var(--border-size) * -1);
-      border: var(--border-size) solid transparent;
-      border-radius: calc(var(--radius) * 1px);
-      background-attachment: fixed;
-      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-      mask-clip: padding-box, border-box;
-      mask-composite: intersect;
-    }
-
-    /* This is the emphasis light */
-    [data-glow]::before {
-      background-image: radial-gradient(calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-          hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)),
-          transparent 100%);
-      filter: brightness(2);
-    }
-
-    /* This is the spotlight */
-    [data-glow]::after {
-      background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
-          hsl(0 100% 100% / var(--border-light-opacity, 1)),
-          transparent 100%);
-    }
-
-    [data-glow] [data-glow] {
-      position: absolute;
-      inset: 0;
-      will-change: filter;
-      opacity: var(--outer, 1);
-    }
-
-    [data-glow]>[data-glow] {
-      border-radius: calc(var(--radius) * 1px);
-      border-width: calc(var(--border-size) * 20);
-      filter: blur(calc(var(--border-size) * 10));
-      background: none;
-      pointer-events: none;
-    }
-
-
-    [data-glow]>[data-glow] ::before {
-      inset: -10px;
-      border-width: 10px;
-    }
-
-
-    [data-glow] [data-glow] {
-      border: none;
-    }
-
-
-    .inside-content {
-      padding: 10px;
-    }
-
-    h2 {
-      font-size: 24px;
-    }
-
-    h3 {
-      font-size: 18px;
-      font-weight: 400;
-    }
-
-    span {
-      font-size: 24px;
-      font-weight: 600;
-    }
-
-    button {
-      height: 45px;
-      width: 80%;
-      border-radius: 50px;
-      border: hidden;
-      font-size: 18px;
-      font-weight: 600;
-      position: absolute;
-      bottom: 50px;
-      left: 50px;
-      cursor: pointer;
-    }
-
-    .button1 {
-      border: 2px solid rgb(0, 0, 0);
-      background-color: black;
-    }
-
-    .button1:hover {
-      background-color: rgb(0, 0, 0);
-      box-shadow: 0 0 10px rgb(255, 111, 171);
-      color: white;
-    }
-
-
-    .button2 {
-      border: 2px solid rgb(22, 181, 250);
-    }
-
-    .button2:hover {
-      background-color: rgb(22, 181, 250);
-      box-shadow: 0 0 10px rgb(22, 181, 250);
-    }
-
-
-    .button3 {
-      border: 2px solid rgb(251, 192, 17);
-    }
-
-    .button3:hover {
-      background-color: rgb(251, 192, 17);
-      box-shadow: 0 0 10px rgb(251, 192, 17);
-    }
-
 
     ul {
       list-style: circle;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
+      padding-left: 20px;
+      font-size: 0.9rem;
     }
 
-
-    /* -- External Social Link CSS Styles -- */
-
- 
-
-    .meta-link {
-      align-items: center;
-      backdrop-filter: blur(3px);
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    button {
+      height: 45px;
+      width: 100%;
+      border-radius: 50px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
-      gap: 5px;
-      left: 10px;
-      padding: 10px 20px;
-      position: fixed;
-      text-decoration: none;
-      transition: background-color 600ms, border-color 600ms;
-      z-index: 10000;
-    }
-    .h2sr{
-      text-decoration: none;
-      color: black;
-      font-size: medium;
-      text-decoration: brown;
-      font-weight: 1000;
-    }
-    .h2sr:hover{
-      color: rgb(119, 134, 224);
-      transform:inherit;
-    }
-    .btweb{
-      text-decoration: none;
+      margin-top: 20px;
+      background-color: #0f3340;
       color: white;
     }
-    
+
+    .button1 a {
+      text-decoration: none;
+      color: white;
+      display: block;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    .h2sr {
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      margin: 15px 0;
+      font-weight: 700;
+    }
+
+    .h2sr:hover {
+      color: rgb(119, 134, 224);
+    }
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 20px;
+      }
+
+      ul {
+        gap: 20px;
+      }
+
+      article {
+        width: 100%;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      ul {
+        padding-left: 15px;
+
+      }
+
+      ul li {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 
 <body>
   <main>
-    <article data-glow>
+    <article>
       <div class="inside-content">
         <h2>Scholarship Information</h2>
-        <a class="h2sr"href="https://scholarship.up.gov.in/LoginStudentPostRenew.aspx">🖇️Scholarship-Renewal</a>
+        <h3 class="h2sr">
+          🖇️ Scholarship-Renewal
+        </h3>
         <ul>
           <li>Scholarship Form (Verified from Accounts, Hostel)</li>
-          <li>Income,Cast and Domicile Certificate with online verification print</li>
-          <li>High-School & Inter Marksheet , (Previous year marksheet if you are in senior) </li>
-          <li>Fee Receipt (All Slips Course Fee + Hostel Fees) + Admittion Letter Councelling Letter</li>
+          <li>Income, Caste, and Domicile Certificate with online verification print</li>
+          <li>High-School & Inter Marksheet (Previous year marksheet if you are a senior)</li>
+          <li>Fee Receipt (All Slips: Course Fee + Hostel Fees) + Admission Letter Counseling Letter</li>
           <li>Bank Passbook Copy (Allahabad Bank, SCRIET Branch Only)</li>
-          <li>ID proof (Aadhaar Card)</li>
-          <li>(For Gen Candidates who don't have cast certificate) One Affidavit of Rs 10 stamp paper for verifying only the General category
-            For SC Candidates One Affidavit of Rs 100 stamp paper as in required Format
-            (For Students having educational gap) One Affidavit for Educational Gap
+          <li>ID Proof (Aadhaar Card)</li>
+          <li>
+            For General Candidates without a caste certificate: Affidavit on Rs 10 stamp paper for General category verification. For SC Candidates: Affidavit on Rs 100 stamp paper as per required format. For students with an educational gap: Affidavit for Educational Gap.
           </li>
-          <li>Three Affidavits for All Students of all categories on 10 Rupee Stamp papers (In Standard format required for scholarship forms) </li>
-          <li style="list-style: none; font-weight: 600;">
-            (Every Photo Copy Paper Must Be Self Attested)</li>
+          <li>Three Affidavits for all students (on Rs 10 stamp paper) in standard format for scholarship forms.</li>
+          <li style="list-style: none; font-weight: 600;">(Every photocopy must be self-attested)</li>
         </ul>
-        <button class="button1" >
-          <a href="https://scholarship.up.gov.in/LoginStudentPostRenew.aspx" class="btweb">WEBSITE</a>
+        <button class="button1">
+          <a href="https://scholarship.up.gov.in/LoginStudentPostRenew.aspx" class="btweb">Visit Website</a>
         </button>
-        
-        
       </div>
-      <div data-glow></div>
     </article>
-
-    <!-- <article data-glow>
-      <div class="inside-content">
-        <h2>Diamond Membership 💎</h2>
-        <h3><span>$6</span>/month</h3>
-        <ul>
-          <li>Some of the Extras are Free for Members Only</li>
-          <li>Unlock exclusive posts and messages</li>
-          <li>Grab every product without any pay</li>
-          <li>Access early releases and special promotions</li>
-        </ul>
-        <button class="button2">Join Now</button>
-      </div>
-      <div data-glow></div>
-    </article> -->
-
-    <!-- <article data-glow>
-      <div class="inside-content">
-        <h2>Platinum Membership 🏆</h2>
-        <h3><span>$10</span>/month</h3>
-        <ul>
-          <li>All Extras are Free for Members</li>
-          <li>Unlock premium posts and messages</li>
-          <li>Grab all products with no extra cost</li>
-          <li>Access early releases, promotions, and special VIP events</li>
-        </ul>
-        <button class="button3">Join Now</button>
-      </div>
-      <div data-glow></div>
-    </article> -->
   </main>
+
 
 
   <script>
