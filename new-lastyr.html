@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<style>
+    .card {
+        width: 350px;
+        margin: 5rem 5rem 1rem 5rem;
+        display: grid;
+    }
+
+    .listcard {
+        margin: 0 auto;
+
+    }
+
+    .nav {
+        background-color: black;
+        color: white;
+        opacity: 0.5;
+    }
+
+    .card-header-tabs .nav-link.active {
+        background-color: #000000;
+        color: white;
+    }
+
+    .card-header:first-child {
+        background-color: black;
+    }
+
+    @media (max-width:991px) {
+        .card {
+            width: 360px;
+            margin: 10px 20px 10px 20px;
+            padding: 0px;
+        }
+
+    }
+</style>
+
+<body>
+    <h2>📹 Video Resources</h2>
+    <div class="dropdown-container">
+        <select id="year-select" class="dropdown-select">
+            <option value="Select Year" disabled selected>Select your Year</option>
+            <option value="year1">Year 1</option>
+            <option value="year2">Year 2</option>
+            <!-- <option value="year3">Year 3</option> -->
+        </select>
+    </div>
+    <div class="dropdown-container">
+        <select id="semester-select" class="dropdown-select">
+            <option value="Select Semester" disabled selected>Select your Semester</option>
+            <!-- Year 1 Semesters -->
+            <option value="Select Semester" data-year="year1" disabled selected>Select your Semester</option>
+            <option value="sem1" data-year="year1">Semester 1</option>
+            <option value="sem2" data-year="year1">Semester 2</option>
+            <!-- Year 2 Semesters -->
+            <option value="Select Semester" data-year="year2" disabled selected>Select your Semester</option>
+            <option value="sem3" data-year="year2">Semester 3</option>
+            <option value="sem4" data-year="year2">Semester 4</option>
+            <!-- Year 3 Semesters -->
+            <option value="Select Semester" data-year="year3" disabled selected>Select your Semester</option>
+            <option value="sem5" data-year="year3">Semester 5</option>
+            <option value="sem6" data-year="year3">Semester 6</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-xxl-4 col-xl-4 col-lg-6 ">
+            <div class="card text-center mx-w" data-year="year1" data-semester="sem1" >
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">previous year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">Books</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">DATA STRUCTURE ADNA ALGORITHMS</h5>
+                    <p class="card-text">Here are the previous year question paper for your subject</p>
+                    <div class="card listcard" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a class="btn btn-outline-primary" href="#"
+                                    role="button">2023-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-warning" href="#"
+                                    role="button">2024-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-secondary" href="#"
+                                    role="button">Books</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-xl-4 col-lg-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">previous year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">Books</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">DATA STRUCTURE ADNA ALGORITHMS</h5>
+                    <p class="card-text">Here are the previous year question paper for your subject</p>
+                    <div class="card listcard" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a class="btn btn-outline-primary" href="#"
+                                    role="button">2023-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-warning" href="#"
+                                    role="button">2024-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-secondary" href="#"
+                                    role="button">Books</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-xl-4 col-lg-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">previous year</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="true" href="#">Books</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">DATA STRUCTURE ADNA ALGORITHMS</h5>
+                    <p class="card-text">Here are the previous year question paper for your subject</p>
+                    <div class="card listcard" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a class="btn btn-outline-primary" href="#"
+                                    role="button">2023-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-warning" href="#"
+                                    role="button">2024-PYQ</a></li>
+                            <li class="list-group-item"><a class="btn btn-outline-secondary" href="#"
+                                    role="button">Books</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('home-button').addEventListener('click', function () {
+            if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+                window.location.reload(); // Reloads the page if it's already the homepage
+            } else {
+                window.location.href = 'index.html'; // Navigates to the homepage if not already there
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeSwitch = document.getElementById('theme-switch');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+
+            // Apply the saved theme on load
+            if (currentTheme === 'dark') {
+                document.body.classList.add('dark');
+                themeSwitch.classList.add('dark-theme');
+            }
+
+            themeSwitch.addEventListener('click', function () {
+                document.body.classList.toggle('dark');
+                themeSwitch.classList.toggle('dark-theme');
+
+                // Save the user's theme preference
+                if (document.body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Get the header elements (updated selectors)
+            const yearHeader = document.querySelector('.year h3:first-of-type');
+            const semesterHeader = document.querySelector('.year h3:nth-of-type(2)');
+
+            // Video Resource Filtering Logic (With data attributes)
+            const yearSelect = document.getElementById('year-select');
+            const semesterSelect = document.getElementById('semester-select');
+            const videoResources = document.querySelectorAll('.video-box');
+            const semesterOptions = document.querySelectorAll('#semester-select option');
+
+            // Initially hide all video resources
+            videoResources.forEach(video => {
+                video.style.display = 'none';
+            });
+
+            // Hide semesters initially
+            semesterOptions.forEach(option => {
+                option.style.display = 'none';
+            });
+
+            // Year Change Event Listener
+            yearSelect.addEventListener('change', function () {
+                const selectedYear = yearSelect.value;
+
+                // Filter semesters based on selected year
+                semesterOptions.forEach(option => {
+                    if (option.dataset.year === selectedYear) {
+                        option.style.display = 'block';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                });
+
+                // Hide all video resources
+                videoResources.forEach(video => {
+                    video.style.display = 'none';
+                });
+
+                // Update the header titles
+                yearHeader.textContent = `Year ${selectedYear.replace('year', '')}`;
+                // DON'T reset semesterHeader here, let it stay as is
+
+                // Remove the semester placeholder (if it exists)
+                semesterHeader.textContent = ''; // Clear the placeholder content
+
+                // Reset the semester dropdown
+                semesterSelect.value = 'Select Semester'; // Set the default value
+
+                // Update video resources on semester change
+                semesterSelect.addEventListener('change', function () {
+                    const selectedSemester = semesterSelect.value;
+                    semesterHeader.textContent = `Semester ${selectedSemester.replace('sem', '')}`;
+
+                    videoResources.forEach(video => {
+                        const resourceYear = video.dataset.year;
+                        const resourceSemester = video.dataset.semester;
+
+                        if (selectedYear === resourceYear && selectedSemester === resourceSemester) {
+                            video.style.display = 'block'; // Show the video
+                        } else {
+                            video.style.display = 'none'; // Hide the video
+                        }
+                    });
+                });
+            });
+
+            // Semester Change Event Listener (Outside of Year Change)
+            semesterSelect.addEventListener('change', function () {
+                const selectedSemester = semesterSelect.value;
+                const selectedYear = yearSelect.value; // Get selected year
+
+                // Update the header titles
+                semesterHeader.textContent = `Semester ${selectedSemester.replace('sem', '')}`;
+
+                videoResources.forEach(video => {
+                    const resourceYear = video.dataset.year;
+                    const resourceSemester = video.dataset.semester;
+
+                    if (selectedYear === resourceYear && selectedSemester === resourceSemester) {
+                        video.style.display = 'block'; // Show the video
+                    } else {
+                        video.style.display = 'none'; // Hide the video
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
