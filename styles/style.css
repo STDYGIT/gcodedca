@@ -22,7 +22,7 @@ body.dark {
 }
 
 header {
-    background-color: #f7f7f7;
+
     /* Light background for header */
     color: #333;
     padding: 20px;
@@ -35,7 +35,7 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
-    backdrop-filter: blur(10px);
+
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(3px);
 }
@@ -63,7 +63,6 @@ nav li {
 
 
 body.dark header {
-    background-color: #111;
     /* Darker shade for dark theme header */
     color: #eee;
     background-color: rgba(255, 255, 255, 0.036);
