@@ -26,6 +26,7 @@ body {
 body.dark {
     background-color: #000; /* Black background for dark theme */
     color: #eee;
+    
 }
 #home-link {
     color: inherit; /* Inherit the color from the parent element */
@@ -37,7 +38,7 @@ body.dark {
   }
 /* Header Styles */
 header {
-    background-color: #f4f4f4; /* Light background for header */
+    /* background-color: #f4f4f4; Light background for header */
     color: #333;
     padding: 20px;
     display: flex;
@@ -48,12 +49,15 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
 body.dark header {
-    background-color: #111; /* Darker shade for dark theme header */
-    color: #eee;
+    /* background-color: #111; Darker shade for dark theme header */
+    color: #eee;  background-color: rgba(255, 255, 255, 0.036);
+    backdrop-filter: blur(5px);
 }
 
 .department-title {
