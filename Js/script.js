@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function sharePage() {
     if (navigator.share) {
         navigator.share({
-            title: 'Department of Computer Application',
+            title: 'GCODEDCA | Department of Computer Application',
             text: 'Explore the Department of Computer Application website! Access software resources, last year question papers, video resources, results, and course syllabus to help you excel in your studies.',
             url: window.location.href
         }).then(() => {
