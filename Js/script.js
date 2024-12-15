@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.getElementById('home-button').addEventListener('click', function() {
+document.getElementById('home-button').addEventListener('click', function () {
     if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
         window.location.reload(); // Reloads the page if it's already the homepage
     } else {
@@ -55,8 +55,7 @@ document.getElementById('home-button').addEventListener('click', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const phrases = ["Softwares ⎋ !","last year question papers!!", "video resources!!!", "Your Results!!", "course syllabus!!!!"];
+document.addEventListener('DOMContentLoaded', function () {
     const typewriterElement = document.querySelector('.typewriter');
     const typingSpeed = 50;
     const backspacingSpeed = 50;
@@ -105,5 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startTypewriter();
 });
-
+function sharePage() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Department of Computer Application',
+            text: 'Explore the Department of Computer Application website! Access software resources, last year question papers, video resources, results, and course syllabus to help you excel in your studies.',
+            url: window.location.href
+        }).then(() => {
+            console.log('Thanks for sharing!');
+        }).catch((error) => {
+            console.error('Error sharing:', error);
+        });
+    } else {
+        alert('Web Share API is not supported in your browser.');
+    }
+}
 
