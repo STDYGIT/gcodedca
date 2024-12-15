@@ -237,6 +237,7 @@ body.dark footer {
     width: 25px;
     /* Ensure all icons have same size */
     height: 25px;
+    cursor: pointer;
 }
 
 .contact-footer {
