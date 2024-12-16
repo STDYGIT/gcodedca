@@ -18,7 +18,7 @@
 
         /* Base Styles for Larger Screens */
         body {
-            background:linear-gradient(360deg, #344C92, #1C2751, #5572B2, #82B1D1);
+            background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
             color: rgb(0, 0, 0);
             background-size: cover;
             background-attachment: fixed;
@@ -264,6 +264,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const colors = [
+                "linear-gradient(to top, #e14fad 0%, #f9d423 100%)",
+                "linear-gradient(to top, #007adf 0%, #00ecbc 100%)",
+                "linear-gradient(to right, #243949 0%, #517fa4 100%)",
+                "linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);"
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundImage = randomColor;
+        });
+    </script>
 </body>
 
 </html>

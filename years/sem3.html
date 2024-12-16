@@ -18,9 +18,7 @@
 
         /* Base Styles for Larger Screens */
         body {
-            background: linear-gradient(180deg,
-                    #A08DAB,
-                    #003CCE, #247AF5, #88B5EE, #D8E8FF);
+            background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
             color: rgb(0, 0, 0);
             background-size: cover;
             background-attachment: fixed;
@@ -70,7 +68,7 @@
             outline: none;
         }
 
-        .head h1{
+        .head h1 {
             margin-top: 10px;
             text-align: center;
             font-weight: bold;
@@ -275,6 +273,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const colors = [
+                "linear-gradient(360deg, #344C92, #1C2751, #5572B2, #82B1D1)",
+                "linear-gradient(to top, #cc208e 0%, #6713d2 100%)",
+                "linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%)",
+                "linear-gradient(-225deg, #FF3CAC 0%, #562B7C 52%, #2B86C5 100%)"
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundImage = randomColor;
+        });
+    </script>
 </body>
 
 </html>
