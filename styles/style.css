@@ -566,14 +566,14 @@ nav ul {
 }
 
 .infobullet:hover {
-    box-shadow: 0px 0px 20px 4px rgb(0, 0, 0);
+    /* box-shadow: 0px 0px 20px 4px rgb(0, 0, 0); */
     cursor: pointer;
     background-color: whitesmoke;
     opacity: 0.9;
 }
 
 body.dark .infobullet:hover {
-    box-shadow: 0px 0px 20px 4px wheat;
+    /* box-shadow: 0px 0px 20px 4px wheat; */
     cursor: pointer;
     opacity: 0.9;
 }
