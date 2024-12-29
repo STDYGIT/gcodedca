@@ -189,7 +189,8 @@ body.dark .content-section:hover {
 
     .svgl {
         display: none;
-        margin-right: 10px;
+        /* margin-right: 10px; */
+       /* padding: 5px; */
     }
 }
 
@@ -199,13 +200,14 @@ body.dark .svgl {
 
 body.dark .svgd {
     display: none;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 /* Section Paragraph */
 .content-section h4 {
     /* margin: 0; */
     color: #363636;
+    padding-left: 10px;
 }
 
 body.dark .content-section h4{
