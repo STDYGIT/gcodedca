@@ -624,9 +624,10 @@ footer {
     color: #333;
     text-align: center;
     padding: 0px 0;
-    border-top: 2px solid #ddd;
+    border-top: 1px solid #ddd;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    font-size: 13px;
 }
 
 body.dark footer {
@@ -636,13 +637,15 @@ body.dark footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    
+}
+.about{
+    /* padding-right: 250px; */
 }
 
 .footer-section {
