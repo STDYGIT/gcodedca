@@ -104,7 +104,10 @@
                 });
             });
         }
-
+        function onSignIn(googleUser) {
+            alert('Sign-in successful! Redirecting...');
+            window.location.href = 'index.html';
+        }
         // Load the Google API client
         gapi.load('client:auth2', initClient);
     </script>
