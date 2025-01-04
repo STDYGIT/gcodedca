@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="997968038883-odr2bj4n68tammj3um2m94hlhlq6nn2b.apps.googleusercontent.com">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+        }
+        .g-signin2 {
+            margin-top: 20px;
+        }
+        .user-info {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Sign-In Demo</h1>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="user-info" id="user-info"></div>
+        <button id="sign-out" onclick="signOut()" style="display: none;">Sign Out</button>
+    </div>
+
+    <script>
+        function onSignIn(googleUser) {
+            // Get user profile information
+            const profile = googleUser.getBasicProfile();
+            const idToken = googleUser.getAuthResponse().id_token;
+
+            // Display user info
+            const userInfo = document.getElementById('user-info');
+            userInfo.innerHTML = `
+                <p><strong>Name:</strong> ${profile.getName()}</p>
+                <p><strong>Email:</strong> ${profile.getEmail()}</p>
+                <p><strong>ID Token:</strong> ${idToken}</p>
+            `;
+
+            // Show sign-out button
+            document.getElementById('sign-out').style.display = 'block';
+        }
+
+        function signOut() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(() => {
+                console.log('User signed out.');
+                document.getElementById('user-info').innerHTML = '';
+                document.getElementById('sign-out').style.display = 'none';
+            });
+        }
+
+        // Initialize the Google API client
+        function initClient() {
+            gapi.load('auth2', () => {
+                gapi.auth2.init({
+                    client_id: '997968038883-odr2bj4n68tammj3um2m94hlhlq6nn2b.apps.googleusercontent.com'
+                });
+            });
+        }
+
+        // Load the Google API client
+        gapi.load('client:auth2', initClient);
+    </script>
+</body>
+</html>

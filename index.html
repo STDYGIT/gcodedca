@@ -12,6 +12,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="364180591599-6a5mepnjp2e5kasa56c6ra53jobb977q.apps.googleusercontent.com">
     <title>Department of Computer Application</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="styles/icons/emoji.png" type="image/x-icon">
@@ -120,7 +122,43 @@
     </footer>
 
     <script src="Js/script.js">
+        function onSignIn(googleUser) {
+            // Get user profile information
+            const profile = googleUser.getBasicProfile();
+            const idToken = googleUser.getAuthResponse().id_token;
 
+            // Display user info
+            const userInfo = document.getElementById('user-info');
+            userInfo.innerHTML = `
+                <p><strong>Name:</strong> ${profile.getName()}</p>
+                <p><strong>Email:</strong> ${profile.getEmail()}</p>
+                <p><strong>ID Token:</strong> ${idToken}</p>
+            `;
+
+            // Show sign-out button
+            document.getElementById('sign-out').style.display = 'block';
+        }
+
+        function signOut() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(() => {
+                console.log('User signed out.');
+                document.getElementById('user-info').innerHTML = '';
+                document.getElementById('sign-out').style.display = 'none';
+            });
+        }
+
+        // Initialize the Google API client
+        function initClient() {
+            gapi.load('auth2', () => {
+                gapi.auth2.init({
+                    client_id: '997968038883-odr2bj4n68tammj3um2m94hlhlq6nn2b.apps.googleusercontent.com'
+                });
+            });
+        }
+
+        // Load the Google API client
+        gapi.load('client:auth2', initClient);
     </script>
 
 </body>
