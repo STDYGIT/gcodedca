@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Sign-In</title>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="997968038883-odr2bj4n68tammj3um2m94hlhlq6nn2b.apps.googleusercontent.com">
+    <meta name="google-signin-client_id"
+        content="997968038883-odr2bj4n68tammj3um2m94hlhlq6nn2b.apps.googleusercontent.com">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +19,7 @@
             height: 100vh;
             margin: 0;
         }
+
         .container {
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -24,12 +27,15 @@
             background: white;
             border-radius: 10px;
         }
+
         .g-signin2 {
             margin-top: 20px;
         }
+
         .user-info {
             margin-top: 20px;
         }
+
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -39,11 +45,13 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #357ae8;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Google Sign-In Demo</h1>
@@ -61,16 +69,23 @@
             // Display user info
             const userInfo = document.getElementById('user-info');
             userInfo.innerHTML = `
-                <p><strong>Name:</strong> ${profile.getName()}</p>
-                <p><strong>Email:</strong> ${profile.getEmail()}</p>
-                <p><strong>ID Token:</strong> ${idToken}</p>
-            `;
+        <p><strong>Name:</strong> ${profile.getName()}</p>
+        <p><strong>Email:</strong> ${profile.getEmail()}</p>
+        <p><strong>ID Token:</strong> ${idToken}</p>
+    `;
 
             // Show sign-out button
             document.getElementById('sign-out').style.display = 'block';
 
-            window.location.href = 'index.html'; 
+            // Debug log
+            console.log('Redirecting to home page...');
+
+            // Redirect after a delay
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Update the path if needed
+            }, 500); // Adjust the delay as necessary
         }
+
 
         function signOut() {
             const auth2 = gapi.auth2.getAuthInstance();
@@ -94,4 +109,5 @@
         gapi.load('client:auth2', initClient);
     </script>
 </body>
+
 </html>
