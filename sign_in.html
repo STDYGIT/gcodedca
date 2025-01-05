@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Sign-In</title>
-    <script src="https://apis.google.com/js/platform.js" async defer onload="initClient()"></script>
-    <meta name="google-signin-client_id"
-        content="1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_NEW_CLIENT_ID.apps.googleusercontent.com">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #080833;
             color: #333;
             display: flex;
             justify-content: center;
@@ -29,11 +28,31 @@
         }
 
         .g-signin2 {
-            margin-top: 20px;
+            align-items: center;
+            display: flex;
+            align-content: flex-start;
+            flex-wrap: nowrap;
+            flex-direction: column;
+           
         }
 
         .user-info {
             margin-top: 20px;
+        }
+
+        .redirect-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2d0e0e;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .redirect-button:hover {
+            background-color: #357ae8;
         }
     </style>
 </head>
@@ -42,6 +61,7 @@
     <div class="container">
         <h1>Google Sign-In</h1>
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button class="redirect-button" onclick="redirectToResources()">Move to Resources</button>
         <div class="user-info" id="user-info"></div>
         <button id="sign-out" onclick="signOut()" style="display: none;">Sign Out</button>
     </div>
@@ -65,6 +85,8 @@
             // Redirect to homepage
             console.log('Redirecting to home page...');
             window.location.href = 'index.html'; // Replace 'index.html' with your actual homepage URL
+            document.getElementById('sign-out').style.display = 'block';
+            document.getElementById('redirect-button').style.display = 'inline-block';
         }
 
         function signOut() {
@@ -79,9 +101,15 @@
         function initClient() {
             gapi.load('auth2', () => {
                 gapi.auth2.init({
-                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
+                    client_id: 'YOUR_NEW_CLIENT_ID.apps.googleusercontent.com'
                 });
             });
+        }
+
+        gapi.load('client:auth2', initClient);
+
+        function redirectToResources() {
+            window.location.href = 'index.html'; // Replace 'index.html' with your actual resources page URL
         }
     </script>
 </body>
