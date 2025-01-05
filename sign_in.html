@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +15,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #080833;
-            color: #333;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,79 +27,64 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            background: white;
+            background: #2d2d2d;
             border-radius: 10px;
         }
 
-        .g-signin2 {
-            align-items: center;
-            display: flex;
-            align-content: flex-start;
-            flex-wrap: nowrap;
-            flex-direction: column;
-
-        }
-
-        .user-info {
-            margin-top: 20px;
+        .user-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
         }
 
         .redirect-button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #2d0e0e;
-            color: rgb(255, 255, 255);
+            background-color: #357ae8;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: none;
         }
 
         .redirect-button:hover {
-            background-color: #357ae8;
+            background-color: #2851a3;
+        }
+
+        .sign-out-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sign-out-button:hover {
+            background-color: #cc0000;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="sign-in-container">
         <h1>Google Sign-In</h1>
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+
+    <div class="container" id="welcome-container" style="display: none;">
+        <div class="user-info" id="user-info">
+            <img src="" alt="Profile Picture" id="profile-pic">
+            <h2 id="welcome-message"></h2>
+            <p id="email"></p>
+        </div>
         <button class="redirect-button" onclick="redirectToResources()">Move to Resources</button>
-        <div class="user-info" id="user-info"></div>
-        <button id="sign-out" onclick="signOut()" style="display: none;">Sign Out</button>
+        <button class="sign-out-button" onclick="signOut()">Sign Out</button>
     </div>
 
     <script>
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            const idToken = googleUser.getAuthResponse().id_token;
-
-            // Display user info
-            const userInfo = document.getElementById('user-info');
-            userInfo.innerHTML = `
-                <p><strong>Name:</strong> ${profile.getName()}</p>
-                <p><strong>Email:</strong> ${profile.getEmail()}</p>
-                <p><strong>ID Token:</strong> ${idToken}</p>
-            `;
-
-            // Show sign-out button
-            document.getElementById('sign-out').style.display = 'block';
-
-            // Redirect to homepage
-            console.log('Redirecting to home page...');
-            window.location.href = 'index.html'; // Replace 'index.html' with your actual homepage URL
-        }
-
-        function signOut() {
-            const auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(() => {
-                console.log('User signed out.');
-                document.getElementById('user-info').innerHTML = '';
-                document.getElementById('sign-out').style.display = 'none';
-            });
-        }
-
+        // Initialize Google API client
         function initClient() {
             gapi.load('auth2', () => {
                 gapi.auth2.init({
@@ -117,11 +105,56 @@
             });
         }
 
-        gapi.load('client:auth2', initClient);
+        function onSignIn(googleUser) {
+            const profile = googleUser.getBasicProfile();
+            const name = profile.getGivenName();
+            const email = profile.getEmail();
+            const profilePic = profile.getImageUrl();
+
+            // Store user info in session storage
+            sessionStorage.setItem('name', name);
+            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('profilePic', profilePic);
+
+            displayWelcomeMessage(name, email, profilePic);
+        }
+
+        function displayWelcomeMessage(name, email, profilePic) {
+            // Update UI with user info
+            document.getElementById('profile-pic').src = profilePic;
+            document.getElementById('welcome-message').textContent = `Welcome, ${name}!`;
+            document.getElementById('email').textContent = email;
+
+            // Show the welcome container and hide the sign-in container
+            document.getElementById('sign-in-container').style.display = 'none';
+            document.getElementById('welcome-container').style.display = 'block';
+        }
 
         function redirectToResources() {
-            window.location.href = 'index.html'; // Replace 'index.html' with your actual resources page URL
+            window.location.href = 'index.html'; // Replace with your actual resources page URL
         }
+
+        function signOut() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(() => {
+                console.log('User signed out.');
+                sessionStorage.clear();
+                location.reload(); // Reload the page to reset the UI
+            });
+        }
+
+        // Check session storage for user info on page load
+        window.onload = () => {
+            const name = sessionStorage.getItem('name');
+            const email = sessionStorage.getItem('email');
+            const profilePic = sessionStorage.getItem('profilePic');
+
+            if (name && email && profilePic) {
+                displayWelcomeMessage(name, email, profilePic);
+            } else {
+                initClient(); // Initialize Google API client if no session data
+            }
+        };
     </script>
 </body>
 
