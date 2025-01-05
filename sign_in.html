@@ -5,85 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Sign-In</title>
+
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
         content="1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #080833;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            min-width: 300px;
-        }
-
-        .g-signin2 {
-            margin: 20px auto;
-            width: fit-content;
-        }
-
-        .profile-section {
-            display: none;
-        }
-
-        .profile-pic {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 10px auto;
-            border: 3px solid #2d0e0e;
-        }
-
-        .welcome-text {
-            font-size: 24px;
-            color: #333;
-            margin: 15px 0;
-        }
-
-        .email-text {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2d0e0e;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            width: 200px;
-            margin: 10px auto;
-        }
-
-        .button:hover {
-            background-color: #357ae8;
-        }
-
-        #sign-out {
-            background-color: #666;
-        }
-
-        #signin-section, #profile-section {
-            transition: opacity 0.3s ease-in-out;
-        }
-    </style>
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #080833;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        min-width: 300px;
+    }
+
+    .g-signin2 {
+        margin: 20px auto;
+        width: fit-content;
+    }
+
+    .profile-section {
+        display: none;
+    }
+
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 10px auto;
+        border: 3px solid #2d0e0e;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+        color: #333;
+        margin: 15px 0;
+    }
+
+    .email-text {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #2d0e0e;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        display: block;
+        width: 200px;
+        margin: 10px auto;
+    }
+
+    .button:hover {
+        background-color: #357ae8;
+    }
+
+    #sign-out {
+        background-color: #666;
+    }
+
+    #signin-section,
+    #profile-section {
+        transition: opacity 0.3s ease-in-out;
+    }
+</style>
 
 <body>
     <div class="container">
@@ -101,79 +103,10 @@
         </div>
     </div>
 
-    <script>
-        // Check if user data exists in localStorage on page load
-        window.onload = function() {
-            const userData = JSON.parse(localStorage.getItem('googleUserData'));
-            if (userData) {
-                // If user data exists, display the profile section
-                displayUserData(userData);
-            }
-
-            // Initialize Google API
-            gapi.load('auth2', function() {
-                gapi.auth2.init({
-                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
-                }).then(function(auth2) {
-                    // Check if user is already signed in with Google
-                    if (auth2.isSignedIn.get()) {
-                        var googleUser = auth2.currentUser.get();
-                        updateProfileInfo(googleUser);
-                    }
-                });
-            });
-        };
-
-        function displayUserData(userData) {
-            document.getElementById('profile-pic').src = userData.imageUrl;
-            document.getElementById('user-name').textContent = userData.givenName;
-            document.getElementById('user-email').textContent = userData.email;
-            
-            document.getElementById('signin-section').style.display = 'none';
-            document.getElementById('profile-section').style.display = 'block';
-        }
-
-        function updateProfileInfo(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            
-            // Store user data in localStorage
-            const userData = {
-                imageUrl: profile.getImageUrl(),
-                givenName: profile.getGivenName(),
-                email: profile.getEmail()
-            };
-            localStorage.setItem('googleUserData', JSON.stringify(userData));
-            
-            // Display the user data
-            displayUserData(userData);
-        }
-
-        function onSignIn(googleUser) {
-            updateProfileInfo(googleUser);
-        }
-
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function() {
-                console.log('User signed out.');
-                // Clear localStorage
-                localStorage.removeItem('googleUserData');
-                
-                // Show signin section and hide profile section
-                document.getElementById('signin-section').style.display = 'block';
-                document.getElementById('profile-section').style.display = 'none';
-                
-                // Clear profile info
-                document.getElementById('profile-pic').src = '';
-                document.getElementById('user-name').textContent = '';
-                document.getElementById('user-email').textContent = '';
-            });
-        }
-
-        function redirectToResources() {
-            window.location.href = 'index.html';
-        }
-    </script>
+    <!-- Load JavaScript files in correct order -->
+    <script src="auth.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
