@@ -30,21 +30,12 @@
         }
 
         .g-signin2 {
-            align-items: center;
-            display: flex;
-            align-content: flex-start;
-            flex-wrap: nowrap;
-            flex-direction: column;
-        }
-
-        .user-info {
-            margin-top: 20px;
-            display: none;
+            margin: 20px auto;
+            width: fit-content;
         }
 
         .profile-section {
             display: none;
-            text-align: center;
         }
 
         .profile-pic {
@@ -52,6 +43,7 @@
             height: 100px;
             border-radius: 50%;
             margin: 10px auto;
+            border: 3px solid #2d0e0e;
         }
 
         .welcome-text {
@@ -74,6 +66,9 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            display: block;
+            width: 200px;
+            margin: 10px auto;
         }
 
         .button:hover {
@@ -82,7 +77,10 @@
 
         #sign-out {
             background-color: #666;
-            margin-top: 10px;
+        }
+
+        #signin-section, #profile-section {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -91,7 +89,7 @@
     <div class="container">
         <div id="signin-section">
             <h1>Google Sign-In</h1>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
         </div>
 
         <div id="profile-section" class="profile-section">
@@ -104,43 +102,52 @@
     </div>
 
     <script>
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            
-            // Hide signin section and show profile section
-            document.getElementById('signin-section').style.display = 'none';
-            document.getElementById('profile-section').style.display = 'block';
+        // Wait for Google API to load
+        window.onload = function() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
+                }).then(function(auth2) {
+                    // Check if user is already signed in
+                    if (auth2.isSignedIn.get()) {
+                        var googleUser = auth2.currentUser.get();
+                        updateProfileInfo(googleUser);
+                    }
+                });
+            });
+        };
+
+        function updateProfileInfo(googleUser) {
+            var profile = googleUser.getBasicProfile();
             
             // Update profile information
             document.getElementById('profile-pic').src = profile.getImageUrl();
             document.getElementById('user-name').textContent = profile.getGivenName();
             document.getElementById('user-email').textContent = profile.getEmail();
+            
+            // Show profile section and hide signin section
+            document.getElementById('signin-section').style.display = 'none';
+            document.getElementById('profile-section').style.display = 'block';
+        }
+
+        function onSignIn(googleUser) {
+            updateProfileInfo(googleUser);
         }
 
         function signOut() {
-            const auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(() => {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
                 console.log('User signed out.');
                 // Show signin section and hide profile section
                 document.getElementById('signin-section').style.display = 'block';
                 document.getElementById('profile-section').style.display = 'none';
+                
+                // Clear profile info
+                document.getElementById('profile-pic').src = '';
+                document.getElementById('user-name').textContent = '';
+                document.getElementById('user-email').textContent = '';
             });
         }
-
-        function initClient() {
-            gapi.load('auth2', () => {
-                gapi.auth2.init({
-                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
-                }).then(() => {
-                    // Check if user is already signed in
-                    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                        onSignIn(gapi.auth2.getAuthInstance().currentUser.get());
-                    }
-                });
-            });
-        }
-
-        gapi.load('client:auth2', initClient);
 
         function redirectToResources() {
             window.location.href = 'index.html';
