@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,22 +81,17 @@
     </div>
 
     <script>
-        // Initialize Google API client
         function initClient() {
             gapi.load('auth2', () => {
                 gapi.auth2.init({
-                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
+                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com',
                 }).then(() => {
-                    // Attach the sign-in event handler
-                    gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
-                        if (isSignedIn) {
-                            onSignIn(gapi.auth2.getAuthInstance().currentUser.get());
-                        }
-                    });
+                    const auth2 = gapi.auth2.getAuthInstance();
 
-                    // Check if user is already signed in
-                    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                        onSignIn(gapi.auth2.getAuthInstance().currentUser.get());
+                    // Check if the user is already signed in
+                    if (auth2.isSignedIn.get()) {
+                        const user = auth2.currentUser.get();
+                        onSignIn(user);
                     }
                 });
             });
@@ -111,21 +103,22 @@
             const email = profile.getEmail();
             const profilePic = profile.getImageUrl();
 
-            // Store user info in session storage
+            // Save user info in sessionStorage
             sessionStorage.setItem('name', name);
             sessionStorage.setItem('email', email);
             sessionStorage.setItem('profilePic', profilePic);
 
+            // Update the UI
             displayWelcomeMessage(name, email, profilePic);
         }
 
         function displayWelcomeMessage(name, email, profilePic) {
-            // Update UI with user info
+            // Display user info
             document.getElementById('profile-pic').src = profilePic;
             document.getElementById('welcome-message').textContent = `Welcome, ${name}!`;
             document.getElementById('email').textContent = email;
 
-            // Show the welcome container and hide the sign-in container
+            // Switch UI
             document.getElementById('sign-in-container').style.display = 'none';
             document.getElementById('welcome-container').style.display = 'block';
         }
@@ -139,20 +132,22 @@
             auth2.signOut().then(() => {
                 console.log('User signed out.');
                 sessionStorage.clear();
-                location.reload(); // Reload the page to reset the UI
+                location.reload(); // Reset UI
             });
         }
 
-        // Check session storage for user info on page load
         window.onload = () => {
+            // Check sessionStorage for user data
             const name = sessionStorage.getItem('name');
             const email = sessionStorage.getItem('email');
             const profilePic = sessionStorage.getItem('profilePic');
 
             if (name && email && profilePic) {
+                // User is already signed in
                 displayWelcomeMessage(name, email, profilePic);
             } else {
-                initClient(); // Initialize Google API client if no session data
+                // Initialize Google API client
+                initClient();
             }
         };
     </script>
