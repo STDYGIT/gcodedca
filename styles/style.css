@@ -1,9 +1,11 @@
 /* General Styles */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
+    background: url("polka-dots\ light.svg");
     /* Light theme background */
     color: #333;
     /* Light theme text color */
@@ -16,7 +18,8 @@ body {
 }
 
 body.dark {
-    background-color: #000;
+    /* background-color: #000; */
+    background: url("polka-dots.svg");
     /* Black background for dark theme */
     color: #eee;
 }
@@ -24,7 +27,6 @@ body.dark {
 header {
     /* Light background for header */
     color: #333;
-
     padding: 20px;
     display: flex;
     align-items: center;
@@ -65,7 +67,7 @@ body.dark header {
     /* Darker shade for dark theme header */
     color: #eee;
     background-color: rgba(255, 255, 255, 0.036);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
 }
 
 .department-title {
@@ -113,13 +115,15 @@ body.dark header {
 main {
     flex: 1;
     padding: 40px;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
+    background: url("polka-dots\ light.svg");
     /* Light background to match body */
     transition: background-color 0.5s ease-in-out;
 }
 
 body.dark main {
     background-color: #000;
+    background: url("polka-dots.svg");
     /* Black background to match typewriter section */
 }
 
@@ -128,7 +132,8 @@ body.dark main {
     display: flex;
     margin-bottom: 40px;
     padding: 30px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    /* background: url("polka-dots\ light.svg"); */
     border: 1px solid #ddd;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -138,12 +143,14 @@ body.dark main {
     transform: translateY(0);
     animation: fadeInUp 0.7s ease;
     flex-direction: column;
+    backdrop-filter: blur(5px);
 }
 
 body.dark .content-section {
-    background-color: #111;
+    /* background-color: #111; */
     /* Darker background for dark theme sections */
     border-color: #333;
+    backdrop-filter: blur(0px);
 }
 
 @keyframes fadeInUp {
@@ -160,7 +167,7 @@ body.dark .content-section {
 
 /* Hover Effect with Color Transition */
 .content-section:hover {
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     /* Slightly darker on hover */
     color: #000;
     /* Highlighted text on hover */
@@ -169,17 +176,18 @@ body.dark .content-section {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
     /* Slight lift on hover */
+    backdrop-filter: blur(8px);
 }
 
 body.dark .content-section:hover {
-    background-color: #333;
+    /* background-color: #333; */
     /* Darker background on hover */
     color: #00ffcc;
     /* Highlighted text on hover */
     border-color: #555;
     /* Lighter border on hover */
+    backdrop-filter: blur(1px);
 }
-
 /* Section Heading */
 .content-section h2 {
     margin: 0;
@@ -312,6 +320,7 @@ body.dark .social-media a:hover {
 /* Typewriter Section Styles */
 .typewriter-section {
     background-color: #ffffff;
+    background: url("polka-dots\ light.svg");
     /* Light background to match body */
     padding: 40px;
     text-align: center;
@@ -323,6 +332,7 @@ body.dark .social-media a:hover {
 
 body.dark .typewriter-section {
     background-color: #000;
+    background: url("polka-dots.svg");
     /* Black background to match dark theme */
     border-bottom: 2px solid #333;
     /* Darker divider */
@@ -681,7 +691,8 @@ body.dark footer {
 .footer-section a:hover {
     text-decoration: underline;
 }
-.pp{
-bottom: 20px;
+
+.pp {
+    bottom: 20px;
 
 }
