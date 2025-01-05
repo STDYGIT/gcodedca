@@ -99,12 +99,24 @@
         }
 
         function initClient() {
-            gapi.load('auth2', () => {
-                gapi.auth2.init({
-                    client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
+        gapi.load('auth2', () => {
+            gapi.auth2.init({
+                client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
+            }).then(() => {
+                // Attach the sign-in event handler
+                gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {
+                    if (isSignedIn) {
+                        onSignIn(gapi.auth2.getAuthInstance().currentUser.get());
+                    }
                 });
+
+                // Check if user is already signed in
+                if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                    onSignIn(gapi.auth2.getAuthInstance().currentUser.get());
+                }
             });
-        }
+        });
+    }
 
         gapi.load('client:auth2', initClient);
 
