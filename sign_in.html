@@ -102,13 +102,20 @@
     </div>
 
     <script>
-        // Wait for Google API to load
+        // Check if user data exists in localStorage on page load
         window.onload = function() {
+            const userData = JSON.parse(localStorage.getItem('googleUserData'));
+            if (userData) {
+                // If user data exists, display the profile section
+                displayUserData(userData);
+            }
+
+            // Initialize Google API
             gapi.load('auth2', function() {
                 gapi.auth2.init({
                     client_id: '1075773109360-rvvcrkes8lbir14cthkbugqus54iq3p7.apps.googleusercontent.com'
                 }).then(function(auth2) {
-                    // Check if user is already signed in
+                    // Check if user is already signed in with Google
                     if (auth2.isSignedIn.get()) {
                         var googleUser = auth2.currentUser.get();
                         updateProfileInfo(googleUser);
@@ -117,17 +124,28 @@
             });
         };
 
+        function displayUserData(userData) {
+            document.getElementById('profile-pic').src = userData.imageUrl;
+            document.getElementById('user-name').textContent = userData.givenName;
+            document.getElementById('user-email').textContent = userData.email;
+            
+            document.getElementById('signin-section').style.display = 'none';
+            document.getElementById('profile-section').style.display = 'block';
+        }
+
         function updateProfileInfo(googleUser) {
             var profile = googleUser.getBasicProfile();
             
-            // Update profile information
-            document.getElementById('profile-pic').src = profile.getImageUrl();
-            document.getElementById('user-name').textContent = profile.getGivenName();
-            document.getElementById('user-email').textContent = profile.getEmail();
+            // Store user data in localStorage
+            const userData = {
+                imageUrl: profile.getImageUrl(),
+                givenName: profile.getGivenName(),
+                email: profile.getEmail()
+            };
+            localStorage.setItem('googleUserData', JSON.stringify(userData));
             
-            // Show profile section and hide signin section
-            document.getElementById('signin-section').style.display = 'none';
-            document.getElementById('profile-section').style.display = 'block';
+            // Display the user data
+            displayUserData(userData);
         }
 
         function onSignIn(googleUser) {
@@ -138,6 +156,9 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function() {
                 console.log('User signed out.');
+                // Clear localStorage
+                localStorage.removeItem('googleUserData');
+                
                 // Show signin section and hide profile section
                 document.getElementById('signin-section').style.display = 'block';
                 document.getElementById('profile-section').style.display = 'none';
