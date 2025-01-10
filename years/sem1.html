@@ -155,12 +155,166 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* Timeline container */
+        .timeline {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            padding: 20px 5%;
+            overflow-x: auto;
+            /* Enables horizontal scroll for small screens */
+            white-space: nowrap;
+            scroll-snap-type: x mandatory;
+            /* Smooth scrolling experience */
+        }
+
+        /* Horizontal line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: #30363d;
+            z-index: 0;
+        }
+
+        /* Event container */
+        .event {
+            position: relative;
+            flex: 1 1 auto;
+            text-align: center;
+            margin: 0 10px;
+            z-index: 1;
+            white-space: normal;
+            scroll-snap-align: center;
+            /* Aligns event to the center on scroll */
+        }
+
+        /* Event dot */
+        .event::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #0a0b0b;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .blink::before {
+            animation: blink 1s infinite;
+            color: red;
+        }
+
+
+        /* Subject and date styles */
+        .subject {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: #000000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline {
+                padding: 15px 2%;
+            }
+
+            .event {
+                margin: 0 5px;
+            }
+
+            .event::before {
+                width: 8px;
+                height: 8px;
+            }
+
+            .subject {
+                font-size: 0.9rem;
+            }
+
+            .date {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline {
+                padding: 10px 1%;
+            }
+
+            .event {
+                margin: 0 3px;
+            }
+
+            .event::before {
+                width: 6px;
+                height: 6px;
+            }
+
+            .subject {
+                font-size: 0.6rem;
+            }
+
+            .date {
+                font-size: 0.6rem;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="head">
         <h1>Year 1 Sem-1 PYQS</h1>
+    </div>
+    <div class="timeline">
+        <div class="event">
+            <div class="subject">C / C++</div>
+            <div class="date">20 Jan</div>
+        </div>
+        <div class="event">
+            <div class="subject">HTML</div>
+            <div class="date">23 Jan</div>
+        </div>
+        <div class="event">
+            <div class="subject">Electronics</div>
+            <div class="date">27 Jan</div>
+        </div>
+        <div class="event">
+            <div class="subject">Mathematics-I</div>
+            <div class="date">30 Jan</div>
+        </div>
+        <div class="event">
+            <div class="subject">Environmental </div>
+            <div class="date">3 Feb</div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -275,7 +429,35 @@
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.style.backgroundImage = randomColor;
         });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const events = document.querySelectorAll('.event');
+            const today = new Date();
+            let closestEvent = null;
+            let closestDateDiff = Infinity;
+
+            events.forEach(event => {
+                const dateElement = event.querySelector('.date');
+                const eventDate = new Date(dateElement.textContent + ' ' + today.getFullYear());
+                const dateDiff = Math.abs(eventDate - today);
+
+                if (dateDiff < closestDateDiff) {
+                    closestDateDiff = dateDiff;
+                    closestEvent = event;
+                }
+            });
+
+            if (closestEvent) {
+                closestEvent.classList.add('blink');
+            }
+        });
+
     </script>
+
+
+
 </body>
 
 </html>
+

@@ -155,12 +155,164 @@
                 font-size: 1.4rem;
             }
         }
+
+
+        .timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #30363d; /* GitHub border color */
+    z-index: 1;
+}
+
+.event {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+    flex: 1 1 150px; /* Allow events to shrink proportionally */
+    min-width: 120px; /* Ensure a minimum size */
+    max-width: 200px; /* Prevent the items from growing too large */
+    z-index: 2;
+}
+
+.event::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #000000; /* GitHub blue */
+    border-radius: 50%;
+}
+
+.event .date {
+    margin-top: 5px;
+    font-size: 1rem; /* Use relative size */
+    color: #000000;
+}
+
+.event .subject {
+    font-size: 1.2rem; /* Use relative size */
+    color: #000000;
+}
+
+.dashed::before {
+    background: none;
+    border: 2px dashed #30363d; /* GitHub border color */
+}
+
+.blinking::before {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline {
+        padding: 0 10px; /* Reduce padding */
+    }
+
+    .event {
+        margin: 10px; /* Reduce margin between events */
+        flex: 1 1 100px; /* Allow items to shrink further */
+    }
+
+    .event::before {
+        width: 8px; /* Reduce the size of the dots */
+        height: 8px;
+        top: -6px; /* Adjust dot position */
+    }
+
+    .event .date {
+        font-size: 0.8rem; /* Scale down text */
+    }
+
+    .event .subject {
+        font-size: 1rem; /* Scale down text */
+    }
+
+    .timeline::before {
+        height: 1px; /* Thinner timeline line */
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding: 0 5px; /* Further reduce padding for smaller screens */
+    }
+
+    .event {
+        flex: 1 1 80px; /* Shrink items even more */
+        max-width: 150px;
+    }
+
+    .event::before {
+        width: 6px; /* Smaller dots */
+        height: 6px;
+        top: -4px; /* Adjust position */
+    }
+
+    .event .date {
+        font-size: 0.7rem; /* Smaller text */
+    }
+
+    .event .subject {
+        font-size: 0.9rem; /* Smaller text */
+    }
+}
+
     </style>
 </head>
 
 <body>
     <div class="head">
         <h1>Year 2 Sem-3 PYQS</h1>
+    </div>
+    <div class="timeline">
+        <div class="event">
+            <div class="subject">R Programming</div>
+            <div class="date">21 Jan 2025</div>
+        </div>
+        <div class="event">
+            <div class="subject">DBMS</div>
+            <div class="date">24 Jan 2025</div>
+        </div>
+        <div class="event">
+            <div class="subject">Mathematics</div>
+            <div class="date">28 Jan 2025</div>
+        </div>
+        <div class="event">
+            <div class="subject">Operating System</div>
+            <div class="date">31 Jan 2025</div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -284,6 +436,33 @@
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.style.backgroundImage = randomColor;
         });
+        document.addEventListener('DOMContentLoaded', function () {
+            const events = document.querySelectorAll('.event');
+            const currentDate = new Date();
+            let closestEvent = null;
+            let closestDate = null;
+
+            events.forEach(event => {
+                const dateText = event.querySelector('.date').textContent;
+                const eventDate = new Date(dateText);
+
+                if (eventDate >= currentDate && (!closestDate || eventDate < closestDate)) {
+                    closestDate = eventDate;
+                    closestEvent = event;
+                }
+            });
+
+            events.forEach(event => {
+                if (event !== closestEvent) {
+                    event.classList.add('dashed');
+                }
+            });
+
+            if (closestEvent) {
+                closestEvent.classList.add('blinking');
+            }
+        });
     </script>
 </body>
+
 </html>
