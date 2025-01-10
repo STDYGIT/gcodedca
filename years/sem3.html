@@ -157,138 +157,137 @@
         }
 
 
+        /* Timeline container */
         .timeline {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px auto;
-    flex-wrap: wrap;
-    padding: 0 20px;
-    width: 100%;
-    max-width: 1200px;
-}
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+            padding: 20px 5%;
+            overflow-x: auto;
+            /* Enables horizontal scroll for small screens */
+            white-space: nowrap;
+            scroll-snap-type: x mandatory;
+            /* Smooth scrolling experience */
+        }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #30363d; /* GitHub border color */
-    z-index: 1;
-}
+        /* Horizontal line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: #30363d;
+            z-index: 0;
+        }
 
-.event {
-    position: relative;
-    text-align: center;
-    margin: 20px;
-    flex: 1 1 150px; /* Allow events to shrink proportionally */
-    min-width: 120px; /* Ensure a minimum size */
-    max-width: 200px; /* Prevent the items from growing too large */
-    z-index: 2;
-}
+        /* Event container */
+        .event {
+            position: relative;
+            flex: 1 1 auto;
+            text-align: center;
+            margin: 0 10px;
+            z-index: 1;
+            white-space: normal;
+            scroll-snap-align: center;
+            /* Aligns event to the center on scroll */
+        }
 
-.event::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: #000000; /* GitHub blue */
-    border-radius: 50%;
-}
+        /* Event dot */
+        .event::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #0a0b0b;
+            border-radius: 50%;
+            z-index: 1;
+        }
 
-.event .date {
-    margin-top: 5px;
-    font-size: 1rem; /* Use relative size */
-    color: #000000;
-}
 
-.event .subject {
-    font-size: 1.2rem; /* Use relative size */
-    color: #000000;
-}
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
 
-.dashed::before {
-    background: none;
-    border: 2px dashed #30363d; /* GitHub border color */
-}
+            50% {
+                opacity: 0;
+            }
 
-.blinking::before {
-    animation: blink 1s infinite;
-}
+            100% {
+                opacity: 1;
+            }
+        }
 
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+        .blink::before {
+            animation: blink 1s infinite;
+            color: red;
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .timeline {
-        padding: 0 10px; /* Reduce padding */
-    }
 
-    .event {
-        margin: 10px; /* Reduce margin between events */
-        flex: 1 1 100px; /* Allow items to shrink further */
-    }
+        /* Subject and date styles */
+        .subject {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-    .event::before {
-        width: 8px; /* Reduce the size of the dots */
-        height: 8px;
-        top: -6px; /* Adjust dot position */
-    }
+        .date {
+            font-size: 0.9rem;
+            color: #000000;
+        }
 
-    .event .date {
-        font-size: 0.8rem; /* Scale down text */
-    }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline {
+                padding: 15px 2%;
+            }
 
-    .event .subject {
-        font-size: 1rem; /* Scale down text */
-    }
+            .event {
+                margin: 0 5px;
+            }
 
-    .timeline::before {
-        height: 1px; /* Thinner timeline line */
-    }
-}
+            .event::before {
+                width: 8px;
+                height: 8px;
+            }
 
-@media (max-width: 480px) {
-    .timeline {
-        padding: 0 5px; /* Further reduce padding for smaller screens */
-    }
+            .subject {
+                font-size: 0.9rem;
+            }
 
-    .event {
-        flex: 1 1 80px; /* Shrink items even more */
-        max-width: 150px;
-    }
+            .date {
+                font-size: 0.8rem;
+            }
+        }
 
-    .event::before {
-        width: 6px; /* Smaller dots */
-        height: 6px;
-        top: -4px; /* Adjust position */
-    }
+        @media (max-width: 480px) {
+            .timeline {
+                padding: 10px 1%;
+            }
 
-    .event .date {
-        font-size: 0.7rem; /* Smaller text */
-    }
+            .event {
+                margin: 0 3px;
+            }
 
-    .event .subject {
-        font-size: 0.9rem; /* Smaller text */
-    }
-}
+            .event::before {
+                width: 6px;
+                height: 6px;
+            }
 
+            .subject {
+                font-size: 0.6rem;
+            }
+
+            .date {
+                font-size: 0.6rem;
+            }
+        }
     </style>
 </head>
 
@@ -438,28 +437,23 @@
         });
         document.addEventListener('DOMContentLoaded', function () {
             const events = document.querySelectorAll('.event');
-            const currentDate = new Date();
+            const today = new Date();
             let closestEvent = null;
-            let closestDate = null;
+            let closestDateDiff = Infinity;
 
             events.forEach(event => {
-                const dateText = event.querySelector('.date').textContent;
-                const eventDate = new Date(dateText);
+                const dateElement = event.querySelector('.date');
+                const eventDate = new Date(dateElement.textContent + ' ' + today.getFullYear());
+                const dateDiff = Math.abs(eventDate - today);
 
-                if (eventDate >= currentDate && (!closestDate || eventDate < closestDate)) {
-                    closestDate = eventDate;
+                if (dateDiff < closestDateDiff) {
+                    closestDateDiff = dateDiff;
                     closestEvent = event;
                 }
             });
 
-            events.forEach(event => {
-                if (event !== closestEvent) {
-                    event.classList.add('dashed');
-                }
-            });
-
             if (closestEvent) {
-                closestEvent.classList.add('blinking');
+                closestEvent.classList.add('blink');
             }
         });
     </script>
