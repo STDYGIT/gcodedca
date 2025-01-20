@@ -431,31 +431,30 @@
         });
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             const events = document.querySelectorAll('.event');
-            const today = new Date();
-            let closestEvent = null;
-            let closestDateDiff = Infinity;
+            const currentDate = new Date();
+            let nextEvent = null;
+            let minDiff = Infinity;
 
             events.forEach(event => {
-                const dateElement = event.querySelector('.date');
-                const eventDate = new Date(dateElement.textContent + ' ' + today.getFullYear());
-                const dateDiff = Math.abs(eventDate - today);
+                const dateText = event.querySelector('.date').textContent;
+                const [day, month] = dateText.split(' ');
+                const eventDate = new Date(currentDate.getFullYear(), new Date(Date.parse(month +" 1, 2024")).getMonth(), day);
 
-                if (dateDiff < closestDateDiff) {
-                    closestDateDiff = dateDiff;
-                    closestEvent = event;
+                const diff = eventDate - currentDate;
+                if (diff > 0 && diff < minDiff) {
+                    minDiff = diff;
+                    nextEvent = event;
                 }
             });
 
-            if (closestEvent) {
-                closestEvent.classList.add('blink');
+            if (nextEvent) {
+                nextEvent.classList.add('blink');
             }
         });
 
     </script>
-
-
 
 </body>
 
