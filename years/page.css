@@ -1,0 +1,276 @@
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Base Styles for Larger Screens */
+body {
+    background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+    color: rgb(0, 0, 0);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.card {
+    padding: 10px;
+    margin: 30px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #82A1D1;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #6a5acd, #1e90ff);
+    transform: scale(1.1);
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    outline: none;
+}
+
+.head h1 {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Responsive Styles */
+@media (max-width: 766px) {
+    .card {
+        padding: 15px;
+        margin: 20px;
+        backdrop-filter: blur(6px);
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+        font-size: 1rem;
+        border-radius: 40px;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.08);
+    }
+
+    .col-sm-6 {
+        margin-bottom: 15px;
+    }
+
+    .col-12 .card {
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+    }
+
+    .col-12 .btn-primary {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .col-12 h5.card-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 10px;
+        margin: 15px;
+        backdrop-filter: blur(4px);
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .col-sm-6 {
+        margin-bottom: 10px;
+    }
+
+    .col-12 .card {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .col-12 h5.card-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Timeline container */
+.timeline {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 20px 5%;
+    overflow-x: auto;
+    /* Enables horizontal scroll for small screens */
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    /* Smooth scrolling experience */
+}
+
+/* Horizontal line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: #30363d;
+    z-index: 0;
+}
+
+/* Event container */
+.event {
+    position: relative;
+    flex: 1 1 auto;
+    text-align: center;
+    margin: 0 10px;
+    z-index: 1;
+    white-space: normal;
+    scroll-snap-align: center;
+    /* Aligns event to the center on scroll */
+}
+
+/* Event dot */
+.event::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #0a0b0b;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink::before {
+    animation: blink 1s infinite;
+    color: red;
+}
+
+
+/* Subject and date styles */
+.subject {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline {
+        padding: 15px 2%;
+    }
+
+    .event {
+        margin: 0 5px;
+    }
+
+    .event::before {
+        width: 8px;
+        height: 8px;
+    }
+
+    .subject {
+        font-size: 0.9rem;
+    }
+
+    .date {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding: 10px 1%;
+    }
+
+    .event {
+        margin: 0 3px;
+    }
+
+    .event::before {
+        width: 6px;
+        height: 6px;
+    }
+
+    .subject {
+        font-size: 0.6rem;
+    }
+
+    .date {
+        font-size: 0.6rem;
+    }
+}
